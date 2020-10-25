@@ -1,0 +1,220 @@
+@import './reset';
+@import './mixins';
+@import './base';
+
+.wrapper {
+    min-height: 100vh;
+    background-color: $color-very-light-grayish-blue;
+    background: url('../images/bg-top.svg') no-repeat right -20rem top -3.5rem
+        $color-very-light-grayish-blue;
+
+    @include s-lg {
+        background: url('../images/bg-top.svg') no-repeat right top,
+            url('../images/bg-bottom.svg') no-repeat left bottom -5rem $color-very-light-grayish-blue;
+    }
+}
+
+.switch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 24rem;
+
+    input {
+        display: none;
+
+        &:checked {
+            ~ .switch__button::after {
+                transform: translateX(2.8rem);
+            }
+        }
+    }
+
+    &__label {
+        color: $color-light-grayish-blue;
+    }
+
+    &__button {
+        position: relative;
+        width: 6rem;
+        height: 3.2rem;
+        background: $gradient;
+        border-radius: 3em;
+        padding: 0.4rem;
+        cursor: pointer;
+        transition: filter 0.3s;
+
+        &::after {
+            display: block;
+            width: 2.4rem;
+            height: 2.4rem;
+            background-color: $color-white;
+            border-radius: 50%;
+            content: '';
+            transition: transform 0.3s;
+        }
+
+        &:hover {
+            filter: brightness(1.2) saturate(0.7);
+        }
+    }
+}
+
+.pricing {
+    margin: auto;
+    width: 90%;
+    max-width: 105.5rem;
+
+    &__header {
+        padding: 6.2rem 0 8.5rem;
+        text-align: center;
+
+        @include s-lg {
+            padding: 7rem 0;
+        }
+    }
+
+    &__heading {
+        margin-bottom: 4rem;
+        font-size: 3.2rem;
+        color: $color-grayish-blue;
+    }
+
+    &__cards {
+        padding-bottom: 7rem;
+        display: grid;
+        gap: 3.2rem 0;
+
+        @include s-md {
+            grid-template-columns: repeat(3, minmax(20rem, 1fr));
+        }
+    }
+}
+
+.card {
+    padding: 3.2rem;
+    background-color: $color-white;
+    border-radius: 0.8rem;
+    text-align: center;
+    box-shadow: 0 4rem 2.4rem rgba($color-blue, 0.15);
+
+    @include s-md {
+        margin: 2rem 0;
+    }
+
+    &__heading {
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+        color: $color-grayish-blue;
+    }
+
+    &__price {
+        margin-bottom: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-dark-grayish-blue;
+
+        &-value {
+            font-size: 7rem;
+
+            @include s-md {
+                font-size: 5rem;
+            }
+
+            @include s-lg {
+                font-size: 7rem;
+            }
+        }
+
+        p:first-child {
+            font-size: 4rem;
+            margin-right: 0.5rem;
+
+            @include s-md {
+                font-size: 2.5rem;
+            }
+
+            @include s-lg {
+                font-size: 4rem;
+            }
+        }
+    }
+
+    &__benefits {
+        margin-bottom: 3.3rem;
+
+        @include s-lg {
+            margin-bottom: 3.8rem;
+        }
+
+        li {
+            padding: 1.6rem;
+            color: $color-grayish-blue;
+            border-top: 1px solid rgba($color-light-grayish-blue, 0.6);
+
+            &:last-child {
+                border-bottom: 1px solid rgba($color-light-grayish-blue, 0.6);
+            }
+        }
+    }
+
+    &__button {
+        padding: 1.4rem;
+        width: 100%;
+        letter-spacing: 0.05rem;
+        text-transform: uppercase;
+        color: $color-white;
+        font-size: 1.3rem;
+        border: none;
+        border-radius: 0.8rem;
+        background-image: $gradient-button-1;
+        background-size: 300% 100%;
+        background-position: right;
+        cursor: pointer;
+        transition: color 0.3s, background-position 0.3s, background-color 0.3s;
+
+        &:focus {
+            outline: none;
+            filter: brightness(1.05);
+        }
+
+        &:hover {
+            background-position: left;
+            color: $color-blue;
+            box-shadow: inset 0 0 0 1px $color-light-grayish-blue;
+        }
+    }
+}
+
+.card--accent {
+    @extend .card;
+
+    background: $gradient-card-accent;
+
+    @include s-md {
+        margin: 0;
+        padding: 5.2rem 3rem;
+    }
+
+    .card {
+        &__heading,
+        &__price,
+        &__benefits li {
+            color: $color-white;
+        }
+
+        &__button {
+            background-image: unset;
+            background-color: $color-white;
+            color: $color-blue;
+
+            &:hover {
+                background-color: transparent;
+                color: $color-white;
+                box-shadow: inset 0 0 0 1px $color-white;
+            }
+        }
+    }
+}
